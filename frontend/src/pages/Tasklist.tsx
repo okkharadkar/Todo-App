@@ -14,6 +14,7 @@ interface Todo {
 
 export const Tasklist = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,13 +39,17 @@ export const Tasklist = () => {
     navigate('/taskform', { state: todo });
   };
 
+  const filteredTodos = todos.filter(todo =>
+    todo.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
       <Header title="TODOS" />
-      <SearchBar />
+      <SearchBar onSearch={setSearchTerm} />
       <div className="flex justify-center">
         <div className="flex-1">
-          {todos.map(todo => (
+          {filteredTodos.map(todo => (
             <TodoItem
               key={todo.id}
               id={todo.id}
