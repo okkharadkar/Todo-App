@@ -3,19 +3,16 @@ import './App.css'
 import { Tasklist } from './pages/Tasklist'
 import { Taskform } from './pages/Taskform'
 import { Singletask } from './pages/Singletask'
-function App() {
 
+function App() {
   return (
-    <>
     <BrowserRouter>
       <Routes>
         <Route path="/taskform" element={<Taskform />} />
         <Route path="/tasks" element={<Tasklist />} />
         <Route path="/tasks/:id" element={<Singletask />} />
-
       </Routes>
     </BrowserRouter>
-  </>
   )
 }
 

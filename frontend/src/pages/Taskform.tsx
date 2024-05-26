@@ -16,7 +16,7 @@ export const Taskform: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     title: editTodo.title || '',
     description: editTodo.description || '',
-    status: editTodo.status || 'completed',
+    status: editTodo.status || 'not-started',
     due_date: editTodo.due_date || ''
   });
 

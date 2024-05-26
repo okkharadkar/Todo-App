@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SearchBar } from "../components/SearchBar";
 import { Header } from "../components/Header";
@@ -18,12 +18,16 @@ export const Tasklist = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:3000/tasks')
-      .then(response => response.json())
-      .then((data: Todo[]) => {
-        setTodos(data);
-      })
-      .catch(error => console.error('Error fetching todos:', error));
+    const fetchTodos = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/tasks');
+        setTodos(response.data);
+      } catch (error) {
+        console.error('Error fetching todos:', error);
+      }
+    };
+
+    fetchTodos();
   }, []);
 
   const handleDelete = async (id: number) => {
