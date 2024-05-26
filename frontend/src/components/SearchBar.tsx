@@ -1,13 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface SearchBarProps {
   onSearch: (searchTerm: string) => void;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+  const navigate = useNavigate();
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value;
     onSearch(searchTerm);
+  };
+
+  const handleClick = () => {
+    navigate('/taskform');
   };
 
   return (
@@ -34,9 +41,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         <div className="ml-4"> {/* Margin left to create space */}
           <button 
             className="flex items-center justify-center text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-full w-10 h-10" 
-            onClick={() => {
-              // Handle button click
-            }}
+            onClick={handleClick}
           >
             <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"/>
